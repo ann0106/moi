@@ -1,0 +1,54 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  height: 80px;
+}
+
+.left img {
+  border-radius: 50%;
+  margin-left: 0;
+}
+
+.links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.links li a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+  font-weight:500;
+}
+
+.links li a:hover {
+  color: #00bfff;
+}
+
+.login {
+  background: linear-gradient(90deg, #60d7ff, #009abd);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 999px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  box-shadow: 0 0 10px #00a4da;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px #00bfff;
+  }
+  to {
+    box-shadow: 0 0 20px #1e90ff;
+  }
+}

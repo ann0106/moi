@@ -1,0 +1,87 @@
+.main {
+    min-height: 100vh;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.2), 
+        rgba(0, 0, 0, 0.7)
+      ),
+      url('/assets/cube_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 10vw;
+    color: white;
+  }
+  
+  .content {
+    z-index: 1;
+  
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      animation: fadeIn 1s ease-in-out;
+    }
+  
+    p {
+      font-size: 1.2rem;
+      color: #ccc;
+      animation: fadeIn 2s ease-in-out;
+    }
+  }
+  
+  .typing {
+    font-size: 2.5rem;
+    white-space: nowrap;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 2.5rem;
+    background-color: #00bfff;
+    margin-left: 4px;
+    animation: blink 0.8s step-end infinite;
+  }
+  
+  .section {
+    padding: 4rem 2rem;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.1);
+    color: white;
+    height: 150vh;
+  }
+  
+  .section h2 {
+    margin-bottom: 1rem;
+    color: #00bfff;
+  }
+  
+  .section ul {
+    list-style: none;
+    padding: 0;
+  
+    li {
+      margin: 0.5rem 0;
+    }
+  }
+  
+  @keyframes blink {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
