@@ -7,11 +7,15 @@ export default function Footer() {
     <footer className={styles.footer}>
       <h2>Contact</h2>
       <div className={styles.icons}>
-        <p><FaEnvelope /> john.doe@example.com</p>
-        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-          <FaLinkedin size={24} />
-        </a>
-      </div>
+  <a href="mailto:angela.kafuliza@gmail.com" className={styles.emailLink}>
+    <FaEnvelope /> angela.kafuliza@gmail.com
+  </a>
+  
+  <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+    <FaLinkedin size={24} />
+  </a>
+</div>
+
     </footer>
   )
 }

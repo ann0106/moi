@@ -1,87 +1,315 @@
+/* === Main Section Styles (Hero) === */
 .main {
-    min-height: 100vh;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.2), 
-        rgba(0, 0, 0, 0.7)
-      ),
-      url('/assets/cube_bg.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 10vw;
-    color: white;
-  }
-  
-  .content {
-    z-index: 1;
-  
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      animation: fadeIn 1s ease-in-out;
-    }
-  
-    p {
-      font-size: 1.2rem;
-      color: #ccc;
-      animation: fadeIn 2s ease-in-out;
-    }
-  }
-  
-  .typing {
-    font-size: 2.5rem;
-    white-space: nowrap;
-    overflow: hidden;
+  min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('/assets/cube_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 10vw;
+  color: white;
+}
+
+.content {
+  z-index: 1;
+
+  h2 {
+    font-size: 2rem;
     margin-bottom: 1rem;
+    animation: fadeIn 1s ease-in-out;
   }
-  
-  .cursor {
-    display: inline-block;
-    width: 3px;
-    height: 2.5rem;
-    background-color: #00bfff;
-    margin-left: 4px;
-    animation: blink 0.8s step-end infinite;
+
+  p {
+    font-size: 1.2rem;
+    color: #ccc;
+    animation: fadeIn 2s ease-in-out;
   }
-  
-  .section {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.1);
-    color: white;
-    height: 150vh;
+}
+
+.typing {
+  font-size: 2rem;
+  color: #ffffff;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #00bfff00;
+  animation: typing 3s steps(30, end), step-end infinite;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 2.5rem;
+  background-color: #00bfff;
+  margin-left: 4px;
+  animation: blink 0.8s step-end infinite;
+}
+/* === About Section Enhancements === */
+.about {
+  background-color: black;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    font-size: 1.4rem;
+    color: #00bfff;
+    animation: fadeIn 1s ease-in-out;
   }
-  
-  .section h2 {
+}
+
+.aboutContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 600px;
+  margin-top: 2rem;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.profilePic {
+  border-radius: 50%;
+  border: 1px solid #00475f;
+  box-shadow: 0 0 15px #009dd1;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: transform 0.3s ease, opacity 0.5s ease;
+
+  &.visible {
+    animation: fadeInFromBottom 1s forwards;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+
+.knowMoreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #00bfff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  animation: glow 5s infinite alternate;
+
+  &:hover {
+    color: #007acc;
+    transform: translateX(2px);
+
+    .icon {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.icon {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+
+/* === Modal Styles === */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: #0c0c0c;
+  padding: 2rem;
+  border-radius: 12px;
+  border: 2px solid #00bfff;
+  box-shadow: 0 0 20px #00bfff;
+  color: rgb(239, 239, 239);
+  max-width: 900px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+  justify-content: justify;
+
+  h3 {
+    font-size: 1.5rem;
     margin-bottom: 1rem;
     color: #00bfff;
   }
-  
-  .section ul {
+
+  p {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.closeBtn {
+  padding: 0.5rem 1rem;
+  background-color: #00bfff;
+  color: rgb(21, 21, 21);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #007bb5;
+    color: white;
+  }
+}
+
+/* FadeIn animation reusable */
+.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+/* === Skills Section === */
+.skills {
+  min-height: 100vh;
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.7)
+    ),
+    url('/assets/skills_bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 10vw;
+  text-align: left;
+  z-index: 2;
+
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    padding-left: 2rem;
+    color: #00bfff;
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  ul {
     list-style: none;
     padding: 0;
-  
+    padding-left: 3rem;
+
+    li {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      animation: fadeIn 2s ease-in-out;
+    }
+  }
+}
+
+/* === Projects Section === */
+#projects {
+  background-color: black;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  min-height: 100vh;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #00bfff;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+}
+
+/* === Generic Section === */
+.section {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.1);
+  color: white;
+  min-height: 100vh;
+
+  h2 {
+    margin-bottom: 1rem;
+    color: #00bfff;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
     li {
       margin: 0.5rem 0;
     }
   }
-  
-  @keyframes blink {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
+}
+
+/* === Animations === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 30ch;
+  }
+}
+
+
+@keyframes fadeInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
