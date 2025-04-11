@@ -4,8 +4,8 @@ import { FaEnvelope, FaLinkedin } from 'react-icons/fa'
 
 export default function Footer() {
   return (
-    <footer className={styles.footer}>
-      <h2>Contact</h2>
+    <footer id="footer" className={styles.footer}>
+      <h2>Contact Me</h2>
       <div className={styles.icons}>
   <a href="mailto:angela.kafuliza@gmail.com" className={styles.emailLink}>
     <FaEnvelope /> angela.kafuliza@gmail.com

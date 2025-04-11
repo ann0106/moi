@@ -16,8 +16,9 @@ export default function Navbar() {
         <li><a href="#projects">Projects</a></li>
       </ul>
       <div className={styles.right}>
-        <button className={styles.login}>Login</button>
+        <a href="#footer" className={styles.login}>Contact</a>
       </div>
+
     </nav>
   )
 }

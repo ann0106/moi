@@ -6,13 +6,33 @@ import Image from 'next/image';
 
 export default function Home() {
   const [textIndex, setTextIndex] = useState(0);
-  const phrases = [" It's Angela Precious Kafuliza", 'Your Favorite Software Developer😉'];
-  const [displayedText, setDisplayedText] = useState('');
-  const [typing, setTyping] = useState(true);
-  const [showModal, setShowModal] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+const phrases = [" It's Angela Precious Kafuliza", 'Your Favorite Software Developer😉'];
+const [displayedText, setDisplayedText] = useState('');
+const [typing, setTyping] = useState(true);
+const [showModal, setShowModal] = useState(false);
+const [isVisible, setIsVisible] = useState(false);
+const [content, setContent] = useState([]);
+const [selectedProject, setSelectedProject] = useState(null); // ✅ Add this line
 
   const profileRef = useRef();
+
+  // Fetch data from the backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('/api/moi');
+        const json = await res.json();
+        if (json.data && json.data.length > 0) {
+          setContent(json.data[0]); // assuming you're displaying a single bio
+        }
+      } catch (error) {
+        console.error('Failed to load content:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
 
   // Typing effect
   useEffect(() => {
@@ -92,7 +112,6 @@ export default function Home() {
           <a className={styles.knowMoreLink} onClick={() => setShowModal(true)}>
             Wait, there's more ... <span className={styles.icon}>➤</span>
           </a>
-
         </div>
       </section>
 
@@ -101,38 +120,7 @@ export default function Home() {
         <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
           <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <h3>More About Angela</h3>
-            <p>
-              I hold a Bachelor of Science degree in Computer Systems and Security with a solid foundation in
-              website development. Recognized for my quick learning, adaptability, and strong work ethic, I
-              thrive in collaborative team environments and am driven to deliver tangible results.
-
-              With a keen eye for detail and exceptional problem-solving abilities, I have strong website
-              development skills and consistently create some of the best frontend designs. My expertise
-              includes comprehensive website development, advanced frontend design implementation, and
-              strategic creation of user-friendly interfaces. I have successfully worked on projects such as the
-              MIIRI website, MCRD, and the MUST Virtual Cultural Lab, delivering high-quality, functional, and
-              visually appealing web solutions. I am dedicated to contributing my technical expertise to ensure
-              high-end and secure digital landscapes.
-            </p>
-            <p>
-            PROFESSIONAL EXPERIENCE
-                Software Developer, MUST - MIIRI
-                Jun 2023 - Present
-                Thyolo, Malawi
-                Duties and Responsibilities
-
-                Leading the development of the MUST Virtual Cultural Lab platform (pending).
-                Leading the development of the TAGDev 2.0 website (pending).
-                Part of the team that revamped the MIIRI website.
-                Gaphic Designing.
-                Programme development for the Innovation garage.
-                Part of the team implementing TAGDev 2.0 project.
-                Part of the team that drafted the MUST workplan for NPC, Malawi Vision 2063.
-                Facilitating the MUST Standard Bank and Marble hackathon.
-                Providing technical support for the MUST Research and Innovation Garage.
-                Taught secondary school girls Graphic Designing during 2024 MUST STEAM camp.
-            </p>
-        
+            <p>{content.bio}</p> {/* Dynamic Content */}
             <button onClick={() => setShowModal(false)} className={styles.closeBtn}>
               Close
             </button>
@@ -150,10 +138,36 @@ export default function Home() {
         </ul>
       </section>
 
-      <section id="projects" className={styles.section}>
-        <h2>Projects</h2>
-        <p>🚀 Coming soon...</p>
-      </section>
+      <section id="projects" className={styles.projectsSection}>
+  <h2>Projects</h2>
+  <p className={styles.centerText}>Explore some platforms and tools I’ve worked with:</p>
+
+  <div className={styles.projectGrid}>
+    {[
+      { name: 'Next.js Project', image: '/assets/next.jpg' },
+      
+      // { name: 'Laravel App', image: '/assets/laravel.jpg' },
+      { name: 'Figma Designs', image: '/assets/design.jpg' },
+      { name: 'React App', image: '/assets/react.jpg' },
+    ].map((project, idx) => (
+      <div key={idx} className={styles.projectCard} onClick={() => setSelectedProject(project)}>
+        <Image src={project.image} alt={project.name} width={200} height={200} />
+      </div>
+    ))}
+  </div>
+
+  {/* Modal for project details */}
+  {selectedProject && (
+    <div className={styles.modalOverlay} onClick={() => setSelectedProject(null)}>
+      <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        <h3>{selectedProject.name}</h3>
+        <Image src={selectedProject.image} alt={selectedProject.name} width={300} height={300} />
+        <button onClick={() => setSelectedProject(null)} className={styles.closeBtn}>Close</button>
+      </div>
+    </div>
+  )}
+</section>
+
     </main>
   );
 }
